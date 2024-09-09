@@ -1,13 +1,14 @@
 package org.example.vendingmachine.task;
 
+import org.example.base.data.ItemInformation;
 import org.example.base.data.ItemQuantity;
-import org.example.base.data.ResultData;
-import org.example.base.feature.core.task.BaseCalculator;
+import org.example.base.data.OrderResultData;
+import org.example.base.feature.core.worker.BaseCalculator;
 import org.example.vendingmachine.Drink;
 import org.example.vendingmachine.payment.CreditCard;
 import org.example.vendingmachine.storage.DrinkStorage;
 
-public class DrinkCardCalculator implements BaseCalculator<Drink, CreditCard> {
+public class DrinkCardCalculator extends BaseCalculator<Drink, CreditCard> {
 
     private final DrinkStorage storage;
 
@@ -16,15 +17,15 @@ public class DrinkCardCalculator implements BaseCalculator<Drink, CreditCard> {
     }
 
     @Override
-    public ResultData calculate(Drink item, CreditCard payment) {
-        ItemQuantity<Drink> drinkItemQuantity = storage.getItemQuantity(item);
-        Drink drink = drinkItemQuantity.getItem();
+    public OrderResultData calculate(Drink item, CreditCard payment) {
+        ItemQuantity drinkItemQuantity = storage.getItemQuantity(item);
+        ItemInformation drink = drinkItemQuantity.getItem();
         boolean isSuccess = payment.spend(drink.getPrice());
         if(isSuccess) {
             storage.updateItemQuantity(item, drinkItemQuantity.getQuantity() - 1);
-            return new ResultData.SuccessResult(drink, payment);
+            return new OrderResultData.SuccessResult(drink, payment);
         } else {
-            return new ResultData.FailureResult(payment, "카드 한도로 구매가 불가능합니다.");
+            return new OrderResultData.FailureResult(payment, "카드 한도로 구매가 불가능합니다.");
         }
     }
 }

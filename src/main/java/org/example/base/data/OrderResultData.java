@@ -3,20 +3,20 @@ package org.example.base.data;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public interface ResultData {
+public interface OrderResultData {
 
-    class FailureResult implements ResultData {
-        @NotNull
+    class FailureResult implements OrderResultData {
+        @Nullable
         private final Payment payment;
         @Nullable
         private final String message;
 
-        public FailureResult(@NotNull Payment payment, @Nullable String message) {
+        public FailureResult(@Nullable Payment payment, @Nullable String message) {
             this.payment = payment;
             this.message = message;
         }
 
-        @NotNull
+        @Nullable
         public Payment getPayment() {
             return payment;
         }
@@ -27,7 +27,7 @@ public interface ResultData {
         }
     }
 
-    class SuccessResult implements ResultData {
+    class SuccessResult implements OrderResultData {
         @NotNull
         private final ItemInformation item;
         @Nullable
@@ -48,7 +48,7 @@ public interface ResultData {
         }
     }
 
-    class ErrorResult implements ResultData {
+    class ErrorResult implements OrderResultData {
         @Nullable
         private final Exception e;
         @Nullable

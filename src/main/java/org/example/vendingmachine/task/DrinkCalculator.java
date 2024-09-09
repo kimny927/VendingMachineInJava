@@ -1,14 +1,14 @@
 package org.example.vendingmachine.task;
 
 import org.example.base.data.Payment;
-import org.example.base.data.ResultData;
-import org.example.base.feature.core.task.BaseCalculator;
+import org.example.base.data.OrderResultData;
+import org.example.base.feature.core.worker.BaseCalculator;
 import org.example.vendingmachine.Drink;
 import org.example.vendingmachine.payment.Cash;
 import org.example.vendingmachine.payment.CreditCard;
 import org.example.vendingmachine.storage.DrinkStorage;
 
-public class DrinkCalculator implements BaseCalculator<Drink, Payment> {
+public class DrinkCalculator extends BaseCalculator<Drink, Payment> {
 
     private DrinkCashCalculator cashCalculator = null;
     private DrinkCardCalculator cardCalculator = null;
@@ -20,7 +20,7 @@ public class DrinkCalculator implements BaseCalculator<Drink, Payment> {
     }
 
     @Override
-    public ResultData calculate(Drink item, Payment payment) throws IllegalArgumentException {
+    public OrderResultData calculate(Drink item, Payment payment) throws IllegalArgumentException {
         if(payment instanceof Cash) {
             if(cashCalculator == null) {
                 cashCalculator = new DrinkCashCalculator(storage);
