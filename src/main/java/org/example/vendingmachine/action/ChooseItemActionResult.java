@@ -3,16 +3,16 @@ package org.example.vendingmachine.action;
 import org.example.vendingmachine.Drink;
 import org.jetbrains.annotations.NotNull;
 
-public class ChooseItemResult extends DrinkActionResult<ChooseItemResult.Data> {
+public class ChooseItemActionResult extends DrinkActionResult<ChooseItemActionResult.Data> {
 
     @NotNull
     private final Data data;
 
-    public ChooseItemResult(Drink item) {
+    public ChooseItemActionResult(Drink item) {
         data = new Data(item, 1);
     }
 
-    public ChooseItemResult(Drink item, int number) {
+    public ChooseItemActionResult(Drink item, int number) {
         data = new Data(item, number);
     }
 

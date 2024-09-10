@@ -44,7 +44,7 @@ public class DrinkVendingMachineInterface implements BaseInterface<DrinkActionRe
             ItemQuantity drink = list.get(number);
             if (drink.isEnoughQuantity() && drink.isEnoughBudget(maximumPrice)) {
                 println("선택한 물품 : " + number + "번 " + list.get(number).getItem());
-                return new ChooseItemResult((Drink) list.get(number).getItem());
+                return new ChooseItemActionResult((Drink) list.get(number).getItem());
             } else {
                 return new DrinkExceptionalActionResult("해당 물품은 재고 소진으로 구매할 수 없습니다.");
             }
@@ -75,21 +75,21 @@ public class DrinkVendingMachineInterface implements BaseInterface<DrinkActionRe
         }
     }
 
-    private InsertPaymentResult payByCash() throws VMInvalidInputException {
+    private InsertPaymentActionResult payByCash() throws VMInvalidInputException {
         println("투입할 현금 액수를 입력하세요.");
         print("입력: ");
         String priceInput = Util.scanner.nextLine();
         try {
             int price = Integer.parseInt(priceInput);
-            return new InsertPaymentResult(new Cash(price));
+            return new InsertPaymentActionResult(new Cash(price));
         } catch (NumberFormatException e) {
             throw new VMInvalidInputException("입력 값에 문제가 있어 주문을 취소합니다.", e);
         }
     }
 
-    private InsertPaymentResult payByCard() {
+    private InsertPaymentActionResult payByCard() {
         println("카드를 삽입했습니다.");
-        return new InsertPaymentResult(new CreditCard());
+        return new InsertPaymentActionResult(new CreditCard());
     }
 
     public DrinkActionResult<?> display(List<ItemQuantity> list) {

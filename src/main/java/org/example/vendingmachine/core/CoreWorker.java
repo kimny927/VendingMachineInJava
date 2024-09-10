@@ -24,23 +24,35 @@ public class CoreWorker {
         this.calculator = calculator;
     }
 
-    public void display(Function<List<ItemQuantity>, DisplayActionResult> displayInteraction,
+    /**
+     * 아이템 목록 노출
+     * @param displayFunction 아이템 리스트를 인자로 받아 사용자에게 아이템 목록을 노출하는 메소드
+     * @param onResult 결과 처리 메소드
+     */
+    public void display(Function<List<ItemQuantity>, DisplayActionResult> displayFunction,
                         Consumer<DisplayActionResult> onResult) {
-        DisplayActionResult result = displayInteraction.apply(reader.getItems());
+        DisplayActionResult result = displayFunction.apply(reader.getItems());
         onResult.accept(result);
     }
 
-    public void order(Supplier<DrinkActionResult<?>> paymentSupplier, BiFunction<Payment, List<ItemQuantity>, DrinkActionResult<?>> drinkPickInteraction,
+    /**
+     * 주문 과정 1) 지불 수단을 받고 2) 구매할 목록을 선택해 3) 처리 결과에 대응
+     * @param insetPaymentFunction 사용자에게서 지불 수단을 받는 메소드
+     * @param chooseItemFunction 지불 수단과 아이템 목록을 인자로 받아 구매할 아이템을 고르는 메소드
+     * @param onResult 처리된 결과를 담당하는 메소드
+     */
+    public void order(Supplier<DrinkActionResult<?>> insetPaymentFunction,
+                      BiFunction<Payment, List<ItemQuantity>, DrinkActionResult<?>> chooseItemFunction,
                       Consumer<OrderActionResult> onResult) {
-        DrinkActionResult<?> paymentSupplierResult = paymentSupplier.get();
+        DrinkActionResult<?> paymentSupplierResult = insetPaymentFunction.get();
 
-        if (paymentSupplierResult instanceof InsertPaymentResult) {
-            InsertPaymentResult paymentResult = (InsertPaymentResult) paymentSupplierResult;
+        if (paymentSupplierResult instanceof InsertPaymentActionResult) {
+            InsertPaymentActionResult paymentResult = (InsertPaymentActionResult) paymentSupplierResult;
             Payment payment = paymentResult.getData();
-            DrinkActionResult<?> drinkPickInteractionResult = drinkPickInteraction.apply(payment, reader.getItems());
+            DrinkActionResult<?> drinkPickInteractionResult = chooseItemFunction.apply(payment, reader.getItems());
 
-            if (drinkPickInteractionResult instanceof ChooseItemResult) {
-                ChooseItemResult chooseItemResult = (ChooseItemResult) drinkPickInteractionResult;
+            if (drinkPickInteractionResult instanceof ChooseItemActionResult) {
+                ChooseItemActionResult chooseItemResult = (ChooseItemActionResult) drinkPickInteractionResult;
                 Drink drink = chooseItemResult.getData().getItem();
                 OrderResultData result = calculator.calculate(drink, payment);
                 onResult.accept(new OrderActionResult(result));
