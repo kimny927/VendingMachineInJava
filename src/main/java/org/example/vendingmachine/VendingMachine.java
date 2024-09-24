@@ -1,26 +1,27 @@
 package org.example.vendingmachine;
 
 import org.example.Util;
+import org.example.base.data.ItemInformation;
 import org.example.base.data.OrderResultData;
 import org.example.base.data.Payment;
 import org.example.vendingmachine.action.DisplayActionResult;
 import org.example.vendingmachine.core.CoreWorker;
 import org.example.vendingmachine.payment.Cash;
 import org.example.vendingmachine.payment.CreditCard;
-import org.example.vendingmachine.ui.DrinkVendingMachineInterface;
+import org.example.vendingmachine.ui.VendingMachineInterface;
 
-public class DrinkVendingMachine {
+public class VendingMachine<Item extends ItemInformation> {
 
-    private final CoreWorker core;
-    private final DrinkVendingMachineInterface userInterface;
+    private final CoreWorker<Item> core;
+    private final VendingMachineInterface<Item> userInterface;
 
     private boolean runningFlag = true;
 
     private Payment temporarayPayment = null;
 
-    public DrinkVendingMachine(
-            DrinkVendingMachineInterface vendingMachineInterface,
-            CoreWorker core) {
+    public VendingMachine(
+            VendingMachineInterface<Item> vendingMachineInterface,
+            CoreWorker<Item> core) {
         this.userInterface = vendingMachineInterface;
         this.core = core;
     }
@@ -33,7 +34,6 @@ public class DrinkVendingMachine {
                 System.out.println("이슈 발생 : " + e);
             }
         }
-        Util.scanner.close();
     }
 
     public void order() {
@@ -44,9 +44,11 @@ public class DrinkVendingMachine {
         );
     }
 
+    @SuppressWarnings("unchecked")
     public void display() {
         core.display(
-                drinkList -> (DisplayActionResult) userInterface.display(drinkList),
+
+                drinkList -> (DisplayActionResult<Item>) userInterface.display(drinkList),
                 result -> {
                     if (!result.isSucceed()) {
                         completeService(new OrderResultData.ErrorResult(null, "상품 목록 확인 문제가 발생했습니다."));
@@ -92,14 +94,19 @@ public class DrinkVendingMachine {
     private void completeService(OrderResultData resultData) {
         if (resultData instanceof OrderResultData.SuccessResult) {
             OrderResultData.SuccessResult success = (OrderResultData.SuccessResult) resultData;
+
             if (success.getPayment() == null) {
                 System.out.println("거스름 돈이 없습니다.");
-            } else if (success.getPayment() instanceof Cash) {
-                System.out.println("거스름 돈이 나왔습니다. " + success.getPayment());
-            } else if (success.getPayment() instanceof CreditCard) {
-                System.out.println("카드를 반환합니다. " + success.getPayment());
             } else {
-                System.out.println("예외 사항. payment 확인. payment:" + success.getPayment());
+                String comment;
+                if (success.getPayment() instanceof Cash) {
+                    comment = "거스름 돈이 나왔습니다.";
+                } else if (success.getPayment() instanceof CreditCard) {
+                    comment = "카드를 반환합니다.";
+                } else {
+                    comment = "계산을 완료했습니다.";
+                }
+                System.out.println(comment + " 잔액 : " + success.getPayment().getBudget());
             }
 
             System.out.println("구매한 물품이 나왔습니다. " + success.getItem());

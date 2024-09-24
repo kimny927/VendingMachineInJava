@@ -4,18 +4,18 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class ItemQuantity {
+public class ItemQuantity<Item extends ItemInformation> {
     @NotNull
-    private final ItemInformation item;
+    private final Item item;
     private int quantity;
 
-    public ItemQuantity(@NotNull ItemInformation item, int count) {
+    public ItemQuantity(@NotNull Item item, int count) {
         this.item = item;
         this.quantity = count;
     }
 
     @NotNull
-    public ItemInformation getItem() {
+    public Item getItem() {
         return item;
     }
 
@@ -39,7 +39,7 @@ public class ItemQuantity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ItemQuantity that = (ItemQuantity) o;
+        ItemQuantity<?> that = (ItemQuantity<?>) o;
         return quantity == that.quantity && item.equals(that.item);
     }
 
@@ -50,6 +50,6 @@ public class ItemQuantity {
 
     @Override
     public String toString() {
-        return item + ", 개수 : "+ quantity;
+        return item + ", 개수 : " + quantity;
     }
 }

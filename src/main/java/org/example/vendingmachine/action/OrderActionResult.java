@@ -1,9 +1,10 @@
 package org.example.vendingmachine.action;
 
 import org.example.base.data.OrderResultData;
+import org.example.base.feature.ui.action.ActionResult;
 import org.jetbrains.annotations.NotNull;
 
-public class OrderActionResult extends DrinkActionResult<OrderResultData> {
+public class OrderActionResult implements ActionResult<OrderResultData> {
     @NotNull
     private final OrderResultData data;
 

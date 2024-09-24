@@ -1,5 +1,7 @@
 package org.example.base.data;
 
+import org.example.vendingmachine.payment.PaymentType;
+
 public interface Payment {
     int getBudget();
 
@@ -9,6 +11,8 @@ public interface Payment {
      * @return 지불 가능할 경우 budget 값은 price 값을 차감하고 true 반환, 지불 불가능할 경우 budget 값 변경 없이 false
      */
     boolean spend(int price);
+
+    PaymentType getPaymentType();
 
     String toString();
 }

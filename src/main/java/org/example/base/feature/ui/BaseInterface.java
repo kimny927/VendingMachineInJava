@@ -1,11 +1,13 @@
 package org.example.base.feature.ui;
 
+import org.example.base.data.ItemInformation;
 import org.example.base.data.ItemQuantity;
+import org.example.vendingmachine.payment.PaymentType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public interface BaseInterface<R> {
+public interface BaseInterface<Item extends ItemInformation, R> {
 
     /**
      * 사용자가 구매할 아이템을 선택한다.
@@ -14,18 +16,18 @@ public interface BaseInterface<R> {
      * @param list         아이템 목록
      * @return 사용자 액션 반환. 다음 작업을 진행 정보를 담는다.
      */
-    R chooseItem(@Nullable Integer maximumPrice, List<ItemQuantity> list);
+    R chooseItem(@Nullable Integer maximumPrice, List<ItemQuantity<Item>> list);
 
     /**
      * 사용자가 지불한다.
      */
-    R pay();
+    R pay(List<PaymentType> supportedPayment);
 
     /**
      * 사용자가 아이템 목록을 본다.
      * 아이템 목록을 노출한다.
      */
-    R display(List<ItemQuantity> itemQuantities);
+    R display(List<ItemQuantity<Item>> itemQuantities);
 
 
 }

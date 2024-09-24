@@ -1,21 +1,22 @@
 package org.example.vendingmachine.action;
 
+import org.example.base.feature.ui.action.ActionResult;
 import org.jetbrains.annotations.NotNull;
 
-public class DrinkExceptionalActionResult extends DrinkActionResult<DrinkExceptionalActionResult.Data> {
+public class ExceptionalActionResult implements ActionResult<ExceptionalActionResult.Data> {
 
     @NotNull
     private final Data data;
 
-    public DrinkExceptionalActionResult() {
+    public ExceptionalActionResult() {
         this.data = new Data(null);
     }
 
-    public DrinkExceptionalActionResult(String message) {
+    public ExceptionalActionResult(String message) {
         this.data = new Data(message);
     }
 
-    public DrinkExceptionalActionResult(@NotNull Data data) {
+    public ExceptionalActionResult(@NotNull Data data) {
         this.data = data;
     }
 
@@ -36,6 +37,7 @@ public class DrinkExceptionalActionResult extends DrinkActionResult<DrinkExcepti
         }
     }
 
+    @NotNull
     @Override
     public Data getData() {
         return data;

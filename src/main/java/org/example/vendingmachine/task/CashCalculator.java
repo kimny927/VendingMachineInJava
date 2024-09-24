@@ -4,26 +4,26 @@ import org.example.base.data.ItemInformation;
 import org.example.base.data.ItemQuantity;
 import org.example.base.data.OrderResultData;
 import org.example.base.feature.core.worker.BaseCalculator;
-import org.example.vendingmachine.Drink;
+import org.example.base.feature.storage.BaseStorage;
 import org.example.vendingmachine.payment.Cash;
-import org.example.vendingmachine.storage.DrinkStorage;
+import org.example.vendingmachine.payment.PaymentType;
 
-public class DrinkCashCalculator extends BaseCalculator<Drink, Cash> {
+public class CashCalculator<Item extends ItemInformation> extends BaseCalculator<Item, Cash> {
 
-    private final DrinkStorage storage;
+    private final BaseStorage<Item> storage;
 
-    public DrinkCashCalculator(DrinkStorage storage) {
+    public CashCalculator(BaseStorage<Item> storage) {
         this.storage = storage;
     }
 
     @Override
-    public OrderResultData calculate(Drink item, Cash payment) {
-        ItemQuantity drinkItemQuantity = storage.getItemQuantity(item);
+    public OrderResultData calculate(Item item, Cash payment) {
+        ItemQuantity<Item> drinkItemQuantity = storage.getItemQuantity(item);
         ItemInformation drink = drinkItemQuantity.getItem();
         boolean isSuccess = payment.spend(drink.getPrice());
-        if(isSuccess) {
+        if (isSuccess) {
             storage.updateItemQuantity(item, drinkItemQuantity.getQuantity() - 1);
-            if(payment.getBudget() == 0) {
+            if (payment.getBudget() == 0) {
                 return new OrderResultData.SuccessResult(drink, null);
             } else {
                 return new OrderResultData.SuccessResult(drink, payment);
@@ -31,5 +31,10 @@ public class DrinkCashCalculator extends BaseCalculator<Drink, Cash> {
         } else {
             return new OrderResultData.FailureResult(payment, "돈이 모자릅니다");
         }
+    }
+
+    @Override
+    public PaymentType getPaymentType() {
+        return PaymentType.Cash;
     }
 }

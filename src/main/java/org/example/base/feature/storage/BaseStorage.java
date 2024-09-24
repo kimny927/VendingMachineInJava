@@ -5,18 +5,18 @@ import org.example.base.data.ItemQuantity;
 
 import java.util.List;
 
-public interface BaseStorage {
+public interface BaseStorage<Item extends ItemInformation> {
 
-    List<ItemQuantity> addItemQuantity(ItemInformation item, int quantity);
+    List<ItemQuantity<Item>> addItemQuantity(Item item, int quantity);
 
-    List<ItemQuantity> getItemQuantities();
+    List<ItemQuantity<Item>> getItemQuantities();
 
-    ItemQuantity getItemQuantity(int index);
+    ItemQuantity<Item> getItemQuantity(int index);
 
-    ItemQuantity getItemQuantity(ItemInformation item);
+    ItemQuantity<Item> getItemQuantity(Item item);
 
-    ItemQuantity updateItemQuantity(int index, int resultQuantity);
+    ItemQuantity<Item> updateItemQuantity(int index, int resultQuantity);
 
-    ItemQuantity updateItemQuantity(ItemInformation item, int resulQuantity);
+    ItemQuantity<Item> updateItemQuantity(Item item, int resulQuantity);
 
 }

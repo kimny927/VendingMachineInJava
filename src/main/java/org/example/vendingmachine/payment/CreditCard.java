@@ -3,11 +3,12 @@ package org.example.vendingmachine.payment;
 import org.example.base.data.Payment;
 
 public class CreditCard implements Payment {
-    // todo 애노테이션 범위...
+
     private int limitBudget;
 
     public CreditCard() {
         this.limitBudget = Integer.MAX_VALUE;
+        System.out.println("한도 없음");
     }
 
     public CreditCard(int budget) {
@@ -31,6 +32,11 @@ public class CreditCard implements Payment {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public PaymentType getPaymentType() {
+        return PaymentType.CreditCard;
     }
 
     @Override

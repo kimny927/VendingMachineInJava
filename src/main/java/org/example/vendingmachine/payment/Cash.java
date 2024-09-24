@@ -3,10 +3,11 @@ package org.example.vendingmachine.payment;
 import org.example.base.data.Payment;
 
 public class Cash implements Payment {
-    // todo 애노테이션 범위...
+
     private int budget;
     public Cash(int budget) {
         this.budget = budget;
+        System.out.println("금액 :"+ budget);
     }
 
     @Override
@@ -23,6 +24,11 @@ public class Cash implements Payment {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public PaymentType getPaymentType() {
+        return PaymentType.Cash;
     }
 
     @Override

@@ -1,19 +1,20 @@
 package org.example.vendingmachine.action;
 
-import org.example.vendingmachine.Drink;
+import org.example.base.data.ItemInformation;
+import org.example.base.feature.ui.action.ActionResult;
 import org.jetbrains.annotations.NotNull;
 
-public class ChooseItemActionResult extends DrinkActionResult<ChooseItemActionResult.Data> {
+public class ChooseItemActionResult<Item extends ItemInformation> implements ActionResult<ChooseItemActionResult.Data<Item>> {
 
     @NotNull
-    private final Data data;
+    private final Data<Item> data;
 
-    public ChooseItemActionResult(Drink item) {
-        data = new Data(item, 1);
+    public ChooseItemActionResult(Item item) {
+        data = new Data<>(item, 1);
     }
 
-    public ChooseItemActionResult(Drink item, int number) {
-        data = new Data(item, number);
+    public ChooseItemActionResult(Item item, int number) {
+        data = new Data<>(item, number);
     }
 
     @Override
@@ -23,22 +24,22 @@ public class ChooseItemActionResult extends DrinkActionResult<ChooseItemActionRe
 
     @NotNull
     @Override
-    public Data getData() {
+    public Data<Item> getData() {
         return data;
     }
 
-    public static class Data {
+    public static class Data<Item extends ItemInformation> {
         @NotNull
-        private final Drink item;
+        private final Item item;
         private final int number;
 
-        Data(@NotNull Drink item, int number) {
+        Data(@NotNull Item item, int number) {
             this.item = item;
             this.number = number;
         }
 
         @NotNull
-        public Drink getItem() {
+        public Item getItem() {
             return item;
         }
 

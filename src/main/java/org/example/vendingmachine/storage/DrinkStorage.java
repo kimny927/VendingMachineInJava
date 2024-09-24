@@ -1,6 +1,5 @@
 package org.example.vendingmachine.storage;
 
-import org.example.base.data.ItemInformation;
 import org.example.base.data.ItemQuantity;
 import org.example.base.feature.storage.BaseStorage;
 import org.example.vendingmachine.Drink;
@@ -8,7 +7,7 @@ import org.example.vendingmachine.Drink;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrinkStorage implements BaseStorage {
+public class DrinkStorage implements BaseStorage<Drink> {
 
     public DrinkStorage() {
 
@@ -16,7 +15,7 @@ public class DrinkStorage implements BaseStorage {
         initialTestData();
     }
 
-    private final ArrayList<ItemQuantity> storage = new ArrayList<>();
+    private final ArrayList<ItemQuantity<Drink>> storage = new ArrayList<>();
 
 
     private void initialTestData() {
@@ -30,18 +29,18 @@ public class DrinkStorage implements BaseStorage {
 
 
     @Override
-    public List<ItemQuantity> addItemQuantity(ItemInformation item, int quantity) {
-        storage.add(new ItemQuantity(item, quantity));
+    public List<ItemQuantity<Drink>> addItemQuantity(Drink item, int quantity) {
+        storage.add(new ItemQuantity<Drink>(item, quantity));
         return storage;
     }
 
     @Override
-    public List<ItemQuantity> getItemQuantities() {
+    public List<ItemQuantity<Drink>> getItemQuantities() {
         return storage;
     }
 
     @Override
-    public ItemQuantity getItemQuantity(int index) throws IndexOutOfBoundsException {
+    public ItemQuantity<Drink> getItemQuantity(int index) throws IndexOutOfBoundsException {
         if (index >= 0 && index < storage.size()) {
             return storage.get(index);
         }
@@ -49,8 +48,8 @@ public class DrinkStorage implements BaseStorage {
     }
 
     @Override
-    public ItemQuantity getItemQuantity(ItemInformation item) throws IndexOutOfBoundsException {
-        for (ItemQuantity drink : storage) {
+    public ItemQuantity<Drink> getItemQuantity(Drink item) throws IndexOutOfBoundsException {
+        for (ItemQuantity<Drink> drink : storage) {
             if (drink.getItem().equals(item)) {
                 return drink;
             }
@@ -59,9 +58,9 @@ public class DrinkStorage implements BaseStorage {
     }
 
     @Override
-    public ItemQuantity updateItemQuantity(int index, int resultQuantity) throws IndexOutOfBoundsException {
+    public ItemQuantity<Drink> updateItemQuantity(int index, int resultQuantity) throws IndexOutOfBoundsException {
         if (index >= 0 && index < storage.size()) {
-            ItemQuantity drink = storage.get(index);
+            ItemQuantity<Drink> drink = storage.get(index);
             drink.setQuantity(resultQuantity);
             return drink;
         }
@@ -69,9 +68,9 @@ public class DrinkStorage implements BaseStorage {
     }
 
     @Override
-    public ItemQuantity updateItemQuantity(ItemInformation item, int resulQuantity) {
-        ItemQuantity itemQuantity = null;
-        for (ItemQuantity iq : storage) {
+    public ItemQuantity<Drink> updateItemQuantity(Drink item, int resulQuantity) {
+        ItemQuantity<Drink> itemQuantity = null;
+        for (ItemQuantity<Drink> iq : storage) {
             if (iq.getItem().equals(item)) {
                 itemQuantity = iq;
                 itemQuantity.setQuantity(resulQuantity);
