@@ -18,6 +18,12 @@ public class Main {
 
         runDrinkVendingMachine();
 
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         runKeyRingVendingMachine();
 
         System.out.println("프로그램을 마칩니다.");

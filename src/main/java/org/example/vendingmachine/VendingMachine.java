@@ -47,7 +47,6 @@ public class VendingMachine<Item extends ItemInformation> {
     @SuppressWarnings("unchecked")
     public void display() {
         core.display(
-
                 drinkList -> (DisplayActionResult<Item>) userInterface.display(drinkList),
                 result -> {
                     if (!result.isSucceed()) {

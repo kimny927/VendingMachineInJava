@@ -2,7 +2,7 @@ package org.example.base.feature.ui;
 
 import org.example.base.data.ItemInformation;
 import org.example.base.data.ItemQuantity;
-import org.example.vendingmachine.payment.PaymentType;
+import org.example.vendingmachine.payment.PaymentAgent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public interface BaseInterface<Item extends ItemInformation, R> {
     /**
      * 사용자가 지불한다.
      */
-    R pay(List<PaymentType> supportedPayment);
+    R pay(List<PaymentAgent> paymentAgent);
 
     /**
      * 사용자가 아이템 목록을 본다.

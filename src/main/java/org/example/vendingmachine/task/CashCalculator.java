@@ -6,7 +6,8 @@ import org.example.base.data.OrderResultData;
 import org.example.base.feature.core.worker.BaseCalculator;
 import org.example.base.feature.storage.BaseStorage;
 import org.example.vendingmachine.payment.Cash;
-import org.example.vendingmachine.payment.PaymentType;
+import org.example.vendingmachine.payment.PaymentAgent;
+import org.example.vendingmachine.payment.agent.CashAgent;
 
 public class CashCalculator<Item extends ItemInformation> extends BaseCalculator<Item, Cash> {
 
@@ -34,7 +35,12 @@ public class CashCalculator<Item extends ItemInformation> extends BaseCalculator
     }
 
     @Override
-    public PaymentType getPaymentType() {
-        return PaymentType.Cash;
+    public Class<Cash> targetPaymentClass() {
+        return Cash.class;
+    }
+
+    @Override
+    public PaymentAgent paymentAgent() {
+        return CashAgent.getInstance();
     }
 }

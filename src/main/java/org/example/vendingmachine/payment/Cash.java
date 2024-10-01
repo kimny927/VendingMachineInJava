@@ -5,9 +5,10 @@ import org.example.base.data.Payment;
 public class Cash implements Payment {
 
     private int budget;
+
     public Cash(int budget) {
         this.budget = budget;
-        System.out.println("금액 :"+ budget);
+        System.out.println("금액 :" + budget);
     }
 
     @Override
@@ -18,17 +19,12 @@ public class Cash implements Payment {
     @Override
     public boolean spend(int price) {
         int result = budget - price;
-        if(result >= 0) {
+        if (result >= 0) {
             budget = result;
             return true;
         } else {
             return false;
         }
-    }
-
-    @Override
-    public PaymentType getPaymentType() {
-        return PaymentType.Cash;
     }
 
     @Override

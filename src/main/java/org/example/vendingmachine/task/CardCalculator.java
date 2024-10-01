@@ -6,7 +6,8 @@ import org.example.base.data.OrderResultData;
 import org.example.base.feature.core.worker.BaseCalculator;
 import org.example.base.feature.storage.BaseStorage;
 import org.example.vendingmachine.payment.CreditCard;
-import org.example.vendingmachine.payment.PaymentType;
+import org.example.vendingmachine.payment.PaymentAgent;
+import org.example.vendingmachine.payment.agent.CreditCardAgent;
 
 public class CardCalculator<Item extends ItemInformation> extends BaseCalculator<Item, CreditCard> {
 
@@ -30,7 +31,12 @@ public class CardCalculator<Item extends ItemInformation> extends BaseCalculator
     }
 
     @Override
-    public PaymentType getPaymentType() {
-        return PaymentType.CreditCard;
+    public Class<CreditCard> targetPaymentClass() {
+        return CreditCard.class;
+    }
+
+    @Override
+    public PaymentAgent paymentAgent() {
+        return CreditCardAgent.getInstance();
     }
 }

@@ -6,7 +6,8 @@ import org.example.base.data.OrderResultData;
 import org.example.base.feature.core.worker.BaseCalculator;
 import org.example.base.feature.storage.BaseStorage;
 import org.example.keyringvendignmachine.payment.KakaoPay;
-import org.example.vendingmachine.payment.PaymentType;
+import org.example.vendingmachine.payment.PaymentAgent;
+import org.example.keyringvendignmachine.payment.KakaoPayAgent;
 import org.jetbrains.annotations.NotNull;
 
 public class KakaoPayCalculator<Item extends ItemInformation> extends BaseCalculator<Item, KakaoPay> {
@@ -36,7 +37,12 @@ public class KakaoPayCalculator<Item extends ItemInformation> extends BaseCalcul
     }
 
     @Override
-    public PaymentType getPaymentType() {
-        return PaymentType.KakaoPay;
+    public Class<KakaoPay> targetPaymentClass() {
+        return KakaoPay.class;
+    }
+
+    @Override
+    public PaymentAgent paymentAgent() {
+        return KakaoPayAgent.getInstance();
     }
 }

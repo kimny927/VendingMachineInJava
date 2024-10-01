@@ -6,7 +6,7 @@ import org.example.base.data.OrderResultData;
 import org.example.base.data.Payment;
 import org.example.base.feature.ui.action.ActionResult;
 import org.example.vendingmachine.action.*;
-import org.example.vendingmachine.payment.PaymentType;
+import org.example.vendingmachine.payment.PaymentAgent;
 import org.example.vendingmachine.task.CoreCalculator;
 import org.example.vendingmachine.task.ItemReader;
 
@@ -31,7 +31,8 @@ public class CoreWorker<Item extends ItemInformation> {
      * @param displayFunction 아이템 리스트를 인자로 받아 사용자에게 아이템 목록을 노출하는 메소드
      * @param onResult        결과 처리 메소드
      */
-    public void display(Function<List<ItemQuantity<Item>>, DisplayActionResult<Item>> displayFunction,
+    public void display(Function<List<ItemQuantity<Item>>,
+            DisplayActionResult<Item>> displayFunction,
                         Consumer<DisplayActionResult<Item>> onResult) {
         DisplayActionResult<Item> result = displayFunction.apply(reader.getItems());
         onResult.accept(result);
@@ -44,10 +45,10 @@ public class CoreWorker<Item extends ItemInformation> {
      * @param chooseItemFunction   지불 수단과 아이템 목록을 인자로 받아 구매할 아이템을 고르는 메소드
      * @param onResult             처리된 결과를 담당하는 메소드
      */
-    public void order(Function<List<PaymentType>, ActionResult<?>> insetPaymentFunction,
+    public void order(Function<List<PaymentAgent>, ActionResult<?>> insetPaymentFunction,
                       BiFunction<Payment, List<ItemQuantity<Item>>, ActionResult<?>> chooseItemFunction,
                       Consumer<OrderActionResult> onResult) {
-        ActionResult<?> paymentSupplierResult = insetPaymentFunction.apply(calculator.getSupportPayment());
+        ActionResult<?> paymentSupplierResult = insetPaymentFunction.apply(calculator.getSupportPaymentAgents());
 
         if (paymentSupplierResult instanceof InsertPaymentActionResult) {
             InsertPaymentActionResult paymentResult = (InsertPaymentActionResult) paymentSupplierResult;

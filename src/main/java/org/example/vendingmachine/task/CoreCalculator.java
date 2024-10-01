@@ -8,7 +8,7 @@ import org.example.keyringvendignmachine.payment.KakaoPay;
 import org.example.keyringvendignmachine.task.KakaoPayCalculator;
 import org.example.vendingmachine.payment.Cash;
 import org.example.vendingmachine.payment.CreditCard;
-import org.example.vendingmachine.payment.PaymentType;
+import org.example.vendingmachine.payment.PaymentAgent;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -16,29 +16,28 @@ import java.util.List;
 
 public class CoreCalculator<Item extends ItemInformation> extends BaseCalculator<Item, Payment> {
 
-    private final LinkedHashMap<PaymentType, BaseCalculator<Item, ? extends Payment>> map;
-    private final List<PaymentType> paymentTypes;
+    private final LinkedHashMap<Class<? extends Payment>, BaseCalculator<Item, ? extends Payment>> map;
+    private final List<PaymentAgent> paymentAgents;
 
     @SafeVarargs
     public CoreCalculator(BaseCalculator<Item, ? extends Payment>... calculators) {
         this.map = new LinkedHashMap<>();
-        this.paymentTypes = new ArrayList<>();
+        this.paymentAgents = new ArrayList<>();
         for (BaseCalculator<Item, ? extends Payment> calculator : calculators) {
-            this.map.put(calculator.getPaymentType(), calculator);
-            this.paymentTypes.add(calculator.getPaymentType());
-            System.out.println("CoreCalculator " + calculator.getPaymentType().getName() + ", " + calculator);
+            this.map.put(calculator.targetPaymentClass(), calculator);
+            this.paymentAgents.add(calculator.paymentAgent());
         }
     }
 
-    public List<PaymentType> getSupportPayment() {
-        return paymentTypes;
+    public List<PaymentAgent> getSupportPaymentAgents() {
+        return paymentAgents;
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public OrderResultData calculate(Item item, Payment payment) throws IllegalArgumentException {
 
-        BaseCalculator<Item, ? extends Payment> calculator = map.get(payment.getPaymentType());
+        BaseCalculator<Item, ? extends Payment> calculator = map.get(payment.getClass());
         if (calculator == null) {
             return new OrderResultData.FailureResult(payment, "지원하지 않는 지불 수단입니다. " + payment);
         }
@@ -58,7 +57,12 @@ public class CoreCalculator<Item extends ItemInformation> extends BaseCalculator
     }
 
     @Override
-    public PaymentType getPaymentType() {
+    public Class<Payment> targetPaymentClass() {
+        return null;
+    }
+
+    @Override
+    public PaymentAgent paymentAgent() {
         return null;
     }
 }
