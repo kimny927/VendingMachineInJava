@@ -3,6 +3,7 @@ package org.example.vendingmachine.ui;
 import org.example.Util;
 import org.example.base.data.ItemInformation;
 import org.example.base.data.ItemQuantity;
+import org.example.base.data.OrderResultData;
 import org.example.base.data.Payment;
 import org.example.base.feature.ui.BaseInterface;
 import org.example.base.feature.ui.action.ActionResult;
@@ -10,6 +11,8 @@ import org.example.vendingmachine.action.ChooseItemActionResult;
 import org.example.vendingmachine.action.DisplayActionResult;
 import org.example.vendingmachine.action.ExceptionalActionResult;
 import org.example.vendingmachine.action.InsertPaymentActionResult;
+import org.example.vendingmachine.payment.Cash;
+import org.example.vendingmachine.payment.CreditCard;
 import org.example.vendingmachine.payment.PaymentAgent;
 
 import java.util.List;
@@ -108,6 +111,41 @@ public class VendingMachineInterface<Item extends ItemInformation>
         return new DisplayActionResult<Item>(true, list);
 
     }
+
+    public void completeService(OrderResultData resultData) {
+        if (resultData instanceof OrderResultData.SuccessResult) {
+            OrderResultData.SuccessResult success = (OrderResultData.SuccessResult) resultData;
+
+            if (success.getPayment() == null) {
+                System.out.println("거스름 돈이 없습니다.");
+            } else {
+                String comment;
+                if (success.getPayment() instanceof Cash) {
+                    comment = "거스름 돈이 나왔습니다.";
+                } else if (success.getPayment() instanceof CreditCard) {
+                    comment = "카드를 반환합니다.";
+                } else {
+                    comment = "계산을 완료했습니다.";
+                }
+                System.out.println(comment + " 잔액 : " + success.getPayment().getBudget());
+            }
+
+            System.out.println("구매한 물품이 나왔습니다. " + success.getItem());
+        } else if (resultData instanceof OrderResultData.FailureResult) {
+            OrderResultData.FailureResult failure = (OrderResultData.FailureResult) resultData;
+            System.out.println("구매에 실패했습니다");
+            System.out.println(failure.getMessage());
+
+            System.out.println("투입한 현금/카드를 반환합니다. " + failure.getPayment());
+        } else if (resultData instanceof OrderResultData.ErrorResult) {
+            OrderResultData.ErrorResult error = (OrderResultData.ErrorResult) resultData;
+            System.out.println(error.getMessage());
+            System.out.println("해당 프로세스를 중지합니다.");
+        } else {
+            System.out.println("예외 사항. resultData 확인. resultData:" + resultData);
+        }
+    }
+
 
     private void println(String message) {
         System.out.println(message);

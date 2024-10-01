@@ -4,25 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c225cac2-f301-4001-9c28-4be561f7edc0" name="Changes" comment="VendingMachine 재사용 가능하도록 수정&#10;- DrinkVendingMachine을 기본 VendingMachine으로 수정&#10;- KakaoPay Payment 추가&#10;- CoreCalculator 변경&#10;- KeyRing 아이템 추가">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/PaymentAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/agent/CashAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/agent/CreditCardAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/agent/KakaoPayAgent.java" afterDir="false" />
+    <list default="true" id="c225cac2-f301-4001-9c28-4be561f7edc0" name="Changes" comment="Payment 작업 더 유연성있게 수정&#10;- PaymentAgent 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/base/data/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/base/data/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/base/feature/core/worker/BaseCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/base/feature/core/worker/BaseCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/base/feature/ui/BaseInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/base/feature/ui/BaseInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/keyringvendignmachine/payment/KakaoPay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/keyringvendignmachine/payment/KakaoPay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/keyringvendignmachine/task/KakaoPayCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/keyringvendignmachine/task/KakaoPayCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/VendingMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/core/CoreWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/core/CoreWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/Cash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/Cash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/CreditCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/CreditCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/PaymentType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/CardCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/CardCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/CashCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/CashCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/CoreCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/CoreCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/ui/VendingMachineInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/ui/VendingMachineInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,6 +93,7 @@
       <recent name="C:\MyProject\VendingMachine\VendingMachineInJava\src\main\java\org\example" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.example.keyringvendignmachine.payment" />
       <recent name="org.example.vendingmachine" />
       <recent name="org.example.base.data" />
     </key>
@@ -232,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727164040189</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Payment 작업 더 유연성있게 수정&#10;- PaymentAgent 추가">
+      <created>1727767568675</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727767568675</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -253,6 +245,7 @@
     <MESSAGE value="변수 이름 수정" />
     <MESSAGE value="클래스 및 변수 이름 수정" />
     <MESSAGE value="VendingMachine 재사용 가능하도록 수정&#10;- DrinkVendingMachine을 기본 VendingMachine으로 수정&#10;- KakaoPay Payment 추가&#10;- CoreCalculator 변경&#10;- KeyRing 아이템 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="VendingMachine 재사용 가능하도록 수정&#10;- DrinkVendingMachine을 기본 VendingMachine으로 수정&#10;- KakaoPay Payment 추가&#10;- CoreCalculator 변경&#10;- KeyRing 아이템 추가" />
+    <MESSAGE value="Payment 작업 더 유연성있게 수정&#10;- PaymentAgent 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="Payment 작업 더 유연성있게 수정&#10;- PaymentAgent 추가" />
   </component>
 </project>
