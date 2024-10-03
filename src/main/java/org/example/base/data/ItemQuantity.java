@@ -4,18 +4,18 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class ItemQuantity<I extends ItemInformation> {
+public class ItemQuantity<Item extends ItemInformation> {
     @NotNull
-    private final I item;
+    private final Item item;
     private int quantity;
 
-    public ItemQuantity(@NotNull I item, int count) {
+    public ItemQuantity(@NotNull Item item, int count) {
         this.item = item;
         this.quantity = count;
     }
 
     @NotNull
-    public I getItem() {
+    public Item getItem() {
         return item;
     }
 
@@ -50,6 +50,6 @@ public class ItemQuantity<I extends ItemInformation> {
 
     @Override
     public String toString() {
-        return item + ", 개수 : "+ quantity;
+        return item + ", 개수 : " + quantity;
     }
 }

@@ -9,22 +9,13 @@ import java.util.List;
 
 public class DrinkStorage implements BaseStorage<Drink> {
 
-    private DrinkStorage() {
+    public DrinkStorage() {
 
         //test
         initialTestData();
     }
 
-    private static DrinkStorage thisStorage = null;
-
     private final ArrayList<ItemQuantity<Drink>> storage = new ArrayList<>();
-
-    public static DrinkStorage getInstance() {
-        if(thisStorage == null) {
-            thisStorage = new DrinkStorage();
-        }
-        return thisStorage;
-    }
 
 
     private void initialTestData() {
@@ -39,7 +30,7 @@ public class DrinkStorage implements BaseStorage<Drink> {
 
     @Override
     public List<ItemQuantity<Drink>> addItemQuantity(Drink item, int quantity) {
-        storage.add(new ItemQuantity<>(item, quantity));
+        storage.add(new ItemQuantity<Drink>(item, quantity));
         return storage;
     }
 
@@ -53,17 +44,17 @@ public class DrinkStorage implements BaseStorage<Drink> {
         if (index >= 0 && index < storage.size()) {
             return storage.get(index);
         }
-        throw new IndexOutOfBoundsException("index 확인. index:"+index);
+        throw new IndexOutOfBoundsException("index 확인. index:" + index);
     }
 
     @Override
     public ItemQuantity<Drink> getItemQuantity(Drink item) throws IndexOutOfBoundsException {
-        for(ItemQuantity<Drink> drink : storage) {
-            if(drink.getItem().equals(item)) {
+        for (ItemQuantity<Drink> drink : storage) {
+            if (drink.getItem().equals(item)) {
                 return drink;
             }
         }
-        throw new IndexOutOfBoundsException("item 확인. item:"+item);
+        throw new IndexOutOfBoundsException("item 확인. item:" + item);
     }
 
     @Override
@@ -79,8 +70,8 @@ public class DrinkStorage implements BaseStorage<Drink> {
     @Override
     public ItemQuantity<Drink> updateItemQuantity(Drink item, int resulQuantity) {
         ItemQuantity<Drink> itemQuantity = null;
-        for(ItemQuantity<Drink> iq : storage) {
-            if(iq.getItem().equals(item)) {
+        for (ItemQuantity<Drink> iq : storage) {
+            if (iq.getItem().equals(item)) {
                 itemQuantity = iq;
                 itemQuantity.setQuantity(resulQuantity);
             }

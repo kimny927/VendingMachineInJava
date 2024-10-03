@@ -4,52 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c225cac2-f301-4001-9c28-4be561f7edc0" name="Changes" comment="첫 작업 완료">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/BaseVendingMachine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/data/ItemInformation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/data/ItemQuantity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/data/Payment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/data/ResultData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/feature/core/BaseCore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/feature/core/task/BaseCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/feature/core/task/BaseReadTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/feature/storage/BaseStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/feature/ui/BaseInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/base/feature/ui/action/UserAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/Drink.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/DrinkVendingMachine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/core/DrinkVendingMachineCore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/exception/VMInvalidInputException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/exception/VMWrongActionException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/Cash.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/payment/CreditCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/storage/DrinkStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/DrinkCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/DrinkCardCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/DrinkCashCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/DrinkExceptionalAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/task/DrinkReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/ui/DrinkVendingMachineInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/useraction/ChooseItemAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/useraction/DisplayAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/useraction/DrinkUserAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/useraction/InsertPaymentAction.java" afterDir="false" />
+    <list default="true" id="c225cac2-f301-4001-9c28-4be561f7edc0" name="Changes" comment="Payment 작업 더 유연성있게 수정&#10;- PaymentAgent 추가">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/VendingMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/ui/VendingMachineInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/vendingmachine/ui/VendingMachineInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,14 +55,19 @@
       <list>
         <option value="Kotlin Class" />
         <option value="Kotlin Interface" />
-        <option value="Enum" />
         <option value="FxmlFile" />
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -130,10 +93,12 @@
       <recent name="C:\MyProject\VendingMachine\VendingMachineInJava\src\main\java\org\example" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.example.keyringvendignmachine.payment" />
       <recent name="org.example.vendingmachine" />
       <recent name="org.example.base.data" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.vendingmachine.actionresult" />
       <recent name="org.example.vendingmachine.task" />
     </key>
   </component>
@@ -210,6 +175,56 @@
       <option name="presentableId" value="Default" />
       <updated>1725079487269</updated>
     </task>
+    <task id="LOCAL-00001" summary="첫 작업 완료">
+      <created>1725297679638</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1725297679638</updated>
+    </task>
+    <task id="LOCAL-00002" summary="피드백 반영 및 개선&#10;1. 불필요한 Generic 삭제&#10;2. Storage 싱글턴 패턴 수정&#10;3. 불필요한 Base 클래스 제거&#10;4. Core 기능 응집">
+      <created>1725903598326</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1725903598326</updated>
+    </task>
+    <task id="LOCAL-00003" summary="피드백 반영 및 개선&#10;1. 불필요한 Generic 삭제&#10;2. Storage 싱글턴 패턴 수정&#10;3. 불필요한 Base 클래스 제거&#10;4. Core 기능 응집">
+      <created>1725903613596</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1725903613596</updated>
+    </task>
+    <task id="LOCAL-00004" summary="피드백 반영 및 개선&#10;4. Core 기능 응집">
+      <created>1725903643705</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1725903643705</updated>
+    </task>
+    <task id="LOCAL-00005" summary="클래스 및 변수 이름 수정">
+      <created>1725957920403</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725957920403</updated>
+    </task>
+    <task id="LOCAL-00006" summary="VendingMachine 재사용 가능하도록 수정&#10;- DrinkVendingMachine을 기본 VendingMachine으로 수정&#10;- KakaoPay Payment 추가&#10;- CoreCalculator 변경&#10;- KeyRing 아이템 추가">
+      <created>1727164040189</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727164040189</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Payment 작업 더 유연성있게 수정&#10;- PaymentAgent 추가">
+      <created>1727767568675</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727767568675</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,6 +240,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="첫 작업 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="첫 작업 완료" />
+    <MESSAGE value="피드백 반영 및 개선&#10;1. 불필요한 Generic 삭제&#10;2. Storage 싱글턴 패턴 수정&#10;3. 불필요한 Base 클래스 제거&#10;4. Core 기능 응집" />
+    <MESSAGE value="피드백 반영 및 개선&#10;4. Core 기능 응집" />
+    <MESSAGE value="변수 이름 수정" />
+    <MESSAGE value="클래스 및 변수 이름 수정" />
+    <MESSAGE value="VendingMachine 재사용 가능하도록 수정&#10;- DrinkVendingMachine을 기본 VendingMachine으로 수정&#10;- KakaoPay Payment 추가&#10;- CoreCalculator 변경&#10;- KeyRing 아이템 추가" />
+    <MESSAGE value="Payment 작업 더 유연성있게 수정&#10;- PaymentAgent 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="Payment 작업 더 유연성있게 수정&#10;- PaymentAgent 추가" />
   </component>
 </project>

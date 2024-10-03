@@ -1,14 +1,16 @@
-package org.example.vendingmachine.payment;
+package org.example.keyringvendignmachine.payment;
 
 import org.example.base.data.Payment;
 
-public class Cash implements Payment {
+import java.util.Random;
+
+public class KakaoPay implements Payment {
 
     private int budget;
 
-    public Cash(int budget) {
+    public KakaoPay(int budget) {
         this.budget = budget;
-        System.out.println("금액 :" + budget);
+        System.out.println("잔액 : " + budget);
     }
 
     @Override
@@ -27,10 +29,9 @@ public class Cash implements Payment {
         }
     }
 
-    @Override
-    public String toString() {
-        return "현금 {" +
-                "남은 돈:" + budget +
-                '}';
+    private static final Random random = new Random();
+
+    public static KakaoPay getRandomInstance() {
+        return new KakaoPay(random.nextInt(100_000));
     }
 }
